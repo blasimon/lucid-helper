@@ -38,7 +38,7 @@ export default function Home() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         messages: newMessages,
-        thread_id: threadId,   // <-- send threadId if exists
+        thread_id: threadId,
       }),
     });
 
@@ -46,7 +46,7 @@ export default function Home() {
     setMessages([...newMessages, { role: data.role, content: data.content }]);
 
     if (data.thread_id) {
-      setThreadId(data.thread_id);  // <-- store threadId after first response
+      setThreadId(data.thread_id);
     }
 
     setLoading(false);

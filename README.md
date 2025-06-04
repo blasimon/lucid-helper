@@ -5,7 +5,7 @@ This is the front-end code powering the public-facing **LUCID Assistant**, which
 
 It uses:
 
-- OpenAI Assistants API (GPT-4o or GPT-4o-mini)
+- OpenAI Assistants API (I use 4.1 mini), not to be confused with the sentence completion API.
 - Next.js 14 (App Router)
 - Vercel serverless deployment
 - Markdown rendering via `marked` and `sanitize-html`
@@ -17,7 +17,7 @@ It uses:
 
 The assistant is live at:
 
-**[https://helpwithlucid.vercel.app](https://helpwithlucid.vercel.app)**
+**[https://helpwithlucid.vercel.app](https://lucid-helper.vercel.app)**
 
 ---
 
