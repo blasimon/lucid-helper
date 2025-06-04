@@ -27,7 +27,13 @@ export async function POST(req: Request): Promise<Response> {
   }
 
   const responseMessages = await openai.beta.threads.messages.list(thread.id);
-  const reply = responseMessages.data[0].content[0].text.value;
+  const contentBlock = responseMessages.data[0].content[0];
+  if (contentBlock.type === "text") {
+    const reply = contentBlock.text.value;
+    return Response.json({ role: 'assistant', content: reply });
+  } else {
+    return Response.json({ role: 'assistant', content: "[Non-text content received]" });
+  }
 
   return Response.json({ role: 'assistant', content: reply });
 }
