@@ -111,7 +111,7 @@ export default function Home() {
       </div>
 <div style={{ marginTop: '32px', fontSize: '0.9rem', color: '#555', textAlign: 'center' }}>
   <p>
-    This assistant was created with the purpose of helping with LUCID setup. The code is open-source, offered without any warranties, at <a href="<a href="https://github.com/blasimon/lucid-helper"" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb' }}>LUCID Help Chatbot</a> on Simon's Github page.</p>
+    This assistant was created with the purpose of helping with LUCID setup. The code is open-source, offered without any warranties, at <a href="https://github.com/blasimon/lucid-helper" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb' }}>LUCID Help Chatbot</a> on Simon's Github page.</p>
 <p> Remember: Key resources, templates, and setup instructions are available at 
     <a href="https://lucidresearch.io" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', marginLeft: '4px' }}>lucidresearch.io</a>.
   </p>
