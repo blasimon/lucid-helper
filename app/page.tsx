@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { marked } from 'marked';
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 
 export default function Home() {
   const [input, setInput] = useState('');
@@ -12,7 +12,7 @@ export default function Home() {
 
   function renderMarkdown(content: string) {
     const html = marked(content);
-    const cleanHtml = (DOMPurify.sanitize(html) as unknown) as string;
+    const cleanHtml = DOMPurify.sanitize(html);
     return (
       <div style={{ padding: '8px 12px' }} dangerouslySetInnerHTML={{ __html: cleanHtml }} />
     );

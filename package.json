@@ -8,8 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@types/dompurify": "^3.0.5",
-    "dompurify": "^3.2.6",
+    "isomorphic-dompurify": "^2.25.0",
     "marked": "^15.0.12",
     "next": "14.1.0",
     "openai": "^4.39.0",
