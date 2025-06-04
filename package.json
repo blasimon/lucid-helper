@@ -1,0 +1,23 @@
+{
+  "name": "lucid-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@types/dompurify": "^3.0.5",
+    "dompurify": "^3.2.6",
+    "marked": "^15.0.12",
+    "next": "14.1.0",
+    "openai": "^4.39.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.6",
+    "typescript": "5.8.3"
+  }
+}

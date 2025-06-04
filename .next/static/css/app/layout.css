@@ -1,0 +1,71 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[3]!./app/globals.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+/* Reset margins */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body style similar to lucidresearch.io */
+body {
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: 'Merriweather', serif;
+  color: #111;
+}
+
+/* Button defaults (override if needed) */
+button {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Input fields */
+input {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Optional: a little spacing baseline */
+main {
+  padding: 2rem 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  color: #111;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: 'Merriweather', serif;
+  color: #111;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+main {
+  padding: 2rem 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
