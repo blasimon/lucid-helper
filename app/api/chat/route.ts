@@ -7,36 +7,49 @@ const openai = new OpenAI({
 });
 
 export async function POST(req: Request): Promise<Response> {
-  const { messages } = await req.json();
+  const { messages, thread_id } = await req.json();
 
-  // Create a new thread for this conversation
-  const thread = await openai.beta.threads.create();
+  let threadId = thread_id;
 
-  // Send the user's latest message to the thread
-  await openai.beta.threads.messages.create(thread.id, {
+  // If no thread_id provided, create one
+  if (!threadId) {
+    const thread = await openai.beta.threads.create();
+    threadId = thread.id;
+  }
+
+  // Always post the latest message to the existing thread
+  await openai.beta.threads.messages.create(threadId, {
     role: 'user',
     content: messages[messages.length - 1].content,
   });
 
   // Run the assistant
-  const run = await openai.beta.threads.runs.create(thread.id, {
+  const run = await openai.beta.threads.runs.create(threadId, {
     assistant_id: process.env.OPENAI_ASSISTANT_ID,
   });
 
   // Poll for completion of the run
-  let runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);
+  let runStatus = await openai.beta.threads.runs.retrieve(threadId, run.id);
   while (runStatus.status !== 'completed') {
     await new Promise((resolve) => setTimeout(resolve, 500));
-    runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);
+    runStatus = await openai.beta.threads.runs.retrieve(threadId, run.id);
   }
 
   // Retrieve the assistant's reply
-  const responseMessages = await openai.beta.threads.messages.list(thread.id);
+  const responseMessages = await openai.beta.threads.messages.list(threadId);
   const contentBlock = responseMessages.data[0].content[0];
 
   if (contentBlock.type === "text") {
-    return Response.json({ role: 'assistant', content: contentBlock.text.value });
+    return Response.json({ 
+      role: 'assistant', 
+      content: contentBlock.text.value, 
+      thread_id: threadId 
+    });
   } else {
-    return Response.json({ role: 'assistant', content: "[Non-text content received]" });
+    return Response.json({ 
+      role: 'assistant', 
+      content: "[Non-text content received]", 
+      thread_id: threadId 
+    });
   }
 }

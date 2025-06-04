@@ -8,6 +8,7 @@ export default function Home() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
   const [loading, setLoading] = useState(false);
+  const [threadId, setThreadId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   function renderMarkdown(content: string) {
@@ -35,15 +36,22 @@ export default function Home() {
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: newMessages }),
+      body: JSON.stringify({
+        messages: newMessages,
+        thread_id: threadId,   // <-- send threadId if exists
+      }),
     });
 
     const data = await res.json();
-    setMessages([...newMessages, data]);
+    setMessages([...newMessages, { role: data.role, content: data.content }]);
+
+    if (data.thread_id) {
+      setThreadId(data.thread_id);  // <-- store threadId after first response
+    }
+
     setLoading(false);
   }
 
-  // Auto-scroll to bottom when messages update
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -109,13 +117,22 @@ export default function Home() {
           Send
         </button>
       </div>
-<div style={{ marginTop: '32px', fontSize: '0.9rem', color: '#555', textAlign: 'center' }}>
-  <p>
-    This assistant was created with the purpose of helping with LUCID setup. The code is open-source, offered without any warranties, at <a href="https://github.com/blasimon/lucid-helper" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb' }}>LUCID Help Chatbot</a> on Simon's Github page.</p>
-<p> Remember: Key resources, templates, and setup instructions are available at 
-    <a href="https://lucidresearch.io" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', marginLeft: '4px' }}>lucidresearch.io</a>.
-  </p>
-</div>
+
+      <div style={{ marginTop: '32px', fontSize: '0.9rem', color: '#555', textAlign: 'center' }}>
+        <p>
+          This assistant was created with the purpose of helping with LUCID setup. The code is open-source, offered without any warranties, at{' '}
+          <a href="https://github.com/blasimon/lucid-helper" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb' }}>
+            LUCID Help Chatbot
+          </a>{' '}
+          on Simon's Github page.
+        </p>
+        <p>
+          Remember: Key resources, templates, and setup instructions are available at
+          <a href="https://lucidresearch.io" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', marginLeft: '4px' }}>
+            lucidresearch.io
+          </a>.
+        </p>
+      </div>
     </main>
   );
 }
