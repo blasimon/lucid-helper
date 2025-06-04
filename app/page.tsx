@@ -12,7 +12,7 @@ export default function Home() {
 
   function renderMarkdown(content: string) {
     const html = marked(content);
-    const cleanHtml = DOMPurify.sanitize(html);
+    const cleanHtml = DOMPurify.sanitize(html) as string;
     return (
       <div style={{ padding: '8px 12px' }} dangerouslySetInnerHTML={{ __html: cleanHtml }} />
     );
