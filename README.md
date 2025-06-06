@@ -17,7 +17,7 @@ It uses:
 
 The assistant is live at:
 
-**[https://helpwithlucid.vercel.app](https://lucid-helper.vercel.app)**
+**[[https://helpwithlucid.vercel.app](https://lucid-helper.vercel.app)]**
 
 ---
 
